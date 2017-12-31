@@ -423,8 +423,8 @@ void ApplicationClass::UpdateLighting()
 
 bool ApplicationClass::Render()
 {
-	D3DXMATRIX worldMatrix, viewMatrix, projectionMatrix, lightViewMatrix, lightOrthoMatrix;
-	D3DXVECTOR4 ambientColor, diffuseColor;
+	DirectX::XMMATRIX  worldMatrix, viewMatrix, projectionMatrix, lightViewMatrix, lightOrthoMatrix;
+	DirectX::XMFLOAT4 ambientColor, diffuseColor;
 	float posX, posY, posZ;
 	bool result;
 
@@ -455,12 +455,12 @@ bool ApplicationClass::Render()
 	m_Light->GetOrthoMatrix(lightOrthoMatrix);
 
 	// Set the light color attributes.
-	diffuseColor = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
-	ambientColor = D3DXVECTOR4(0.15f, 0.15f, 0.15f, 1.0f);
+	diffuseColor = DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	ambientColor = DirectX::XMFLOAT4(0.15f, 0.15f, 0.15f, 1.0f);
 
 	// Translate to the position of the ground model.
 	m_GroundModel->GetPosition(posX, posY, posZ);
-	D3DXMatrixTranslation(&worldMatrix, posX, posY, posZ);
+	worldMatrix = DirectX::XMMatrixTranslation(posX, posY, posZ);
 
 	// Render the ground model using the shadow shader.
 	m_GroundModel->Render(m_Direct3D->GetDeviceContext());
@@ -471,7 +471,7 @@ bool ApplicationClass::Render()
 
 	// Translate to the position of the tree model.
 	m_Tree->GetPosition(posX, posY, posZ);
-	D3DXMatrixTranslation(&worldMatrix, posX, posY, posZ);
+	worldMatrix = DirectX::XMMatrixTranslation(posX, posY, posZ);
 
 	// Render the tree trunk.
 	m_Tree->RenderTrunk(m_Direct3D->GetDeviceContext());
@@ -497,7 +497,7 @@ bool ApplicationClass::Render()
 
 bool ApplicationClass::RenderSceneToTexture()
 {
-	D3DXMATRIX worldMatrix, lightViewMatrix, lightOrthoMatrix;
+	DirectX::XMMATRIX  worldMatrix, lightViewMatrix, lightOrthoMatrix;
 	float posX, posY, posZ;
 	bool result;
 
@@ -520,7 +520,7 @@ bool ApplicationClass::RenderSceneToTexture()
 
 	// Translate to the position of the tree.
 	m_Tree->GetPosition(posX, posY, posZ);
-	D3DXMatrixTranslation(&worldMatrix, posX, posY, posZ);
+	worldMatrix = DirectX::XMMatrixTranslation(posX, posY, posZ);
 
 	// Render the tree trunk with the depth shader.
 	m_Tree->RenderTrunk(m_Direct3D->GetDeviceContext());
@@ -539,7 +539,7 @@ bool ApplicationClass::RenderSceneToTexture()
 
 	// Translate to the position of the ground model.
 	m_GroundModel->GetPosition(posX, posY, posZ);
-	D3DXMatrixTranslation(&worldMatrix, posX, posY, posZ);
+	worldMatrix = DirectX::XMMatrixTranslation(posX, posY, posZ);
 
 	// Render the ground model with the depth shader.
 	m_GroundModel->Render(m_Direct3D->GetDeviceContext());
