@@ -10,4 +10,5 @@ Any contribution, issue or fix will be appreciated.
 - http://www.rastertek.com (For development the original source code example)
 - https://msdn.microsoft.com/en-us/library/windows/desktop/ff729728(v=vs.85).aspx (Microsoft Porting Guide from D3DXMath to DirectXMath)
 - http://asawicki.info/news_1604_adventures_with_porting_code_to_visual_studio_2015_and_no_directx_sdk.html
+- https://github.com/Microsoft/DirectXTex/tree/master/DDSTextureLoader (DDS Texture Loader dependency)
 - Fernando Velcic (For porting source code)
